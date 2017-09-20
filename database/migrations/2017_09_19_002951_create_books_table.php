@@ -18,10 +18,13 @@ class CreateBooksTable extends Migration
             $table->string('title',50);
             $table->string('description',100);
             $table->string('picture',100);
+            //Defino los campos de la relacion con books
             $table->integer('category_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->timestamps();
+            //Borrado logico creando un campo Null
             $table->softDeletes();
+            //Defino las relaciones
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('category_id')->references('id')->on('categories');
         });
