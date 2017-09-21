@@ -6,7 +6,7 @@
 //Agrego mis rutas en un grupo llamado admin
 Route::group(['prefix' => 'admin', 'as'=>'admin' ],function (){
     //Agrego un nivel de seguridad para que solo si he iniciado sesion pueda consultar mis rutas
-    Route::group(['middleawere'=>'auth' ],function(){
+    Route::group(['middleware'=>'auth' ],function(){
         //Aqui agrego mis rutas, debo estar login para consultar
         Route::get('categories-all',function(){
             return App\Core\Entities\Category::all();
