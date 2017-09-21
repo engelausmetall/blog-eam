@@ -23,3 +23,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Van doble guion bajo
 require __DIR__ . '/modules/eloquents.php';
 require __DIR__ . '/modules/basics.php';
+require __DIR__ . '/modules/blog.php';

@@ -1,21 +1,48 @@
 <?php
 
+//Es el espacio de trabajo de las clases
 namespace App\Http\Controllers\Admin;
 
+//Es igual que usar require o require_once (include)
 use App\Core\Entities\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Core\Repositories\CategoryRPY;
 
 class CategoryController extends Controller
 {
+
+    //Defino una variables interna de esta clase
+    private $objCategoryRPY;
+
+    //declaro un constructor
+    function __construct(CategoryRPY $objCategoryRPY){
+        $this->objCategoryRPY=$objCategoryRPY;
+        //$this->objCategoryRPY=new CategoryRPY;
+
+    }
+
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        //Imprimo un resultado
+        //return "data";
+        //realizo un select * from
+        //$result= \App\Core\Entities\Category::all()
+        //return $result
+        $table =$this->objCategoryRPY->forTables($request);
+        
+        //1 forma de Visualizar la vista que se creo en resources/catalagos/categories
+        //return viewe('catalogos.categories.index',compact('table'));
+        //2 forma de visualizar la vista que se creo
+        return view('catalogos.categories.index')->with([
+            'table'=>$table
+        ]);
     }
 
     /**
@@ -36,7 +63,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Guardar data y validacion de los campos name y description
+        $this->validate($request,
+        ['name'=>'required','description'=>'required'],
+        ['name.required'=>'El nombre es obligatorio',
+        'description.required'=>'La descripcion es obligatorio']);
+
+        //Inicio el guardado de objecto
+        $this->objCategoryRPY->forSave($request);
     }
 
     /**
@@ -70,7 +104,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        //Actualizar data
+        $this->validate($request,
+        ['name'=>'required','description'=>'required'],
+        ['name.required'=>'El nombre es obligatorio',
+        'description.required'=>'La descripcion es obligatorio']);
+
+        //Inicio del update
+        $this->objCategoryRPY->forUpdate($request,$category);
     }
 
     /**
