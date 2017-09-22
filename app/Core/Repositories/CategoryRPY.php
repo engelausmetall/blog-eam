@@ -20,6 +20,7 @@ class CategoryRPY{
             //Traer data por ordern de nombre
             $result=Category::orderBY('name', 'ASC')
             ->where('name','LIKE',"%$filter%")
+            ->orwhere('description','LIKE',"%$filter%")
             ->paginate(5)->appends('filter',$filter);
             return $result;
         }

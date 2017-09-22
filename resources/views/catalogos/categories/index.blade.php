@@ -18,7 +18,7 @@
                         <input type="text" name="filter" class="form-control"
                         placeholder="Insertar Datos de Busqueda" value="{{$filter}}"> </input>
                         <span class="input-group-btn">
-                            <button class="btn btn-danger" type="submmit">Buscar Registro</button>
+                            <button class="btn btn-danger" type="submmit">Buscar</button>
                             </span>
 					{!! Form::close() !!}
 					 </div>
