@@ -16,8 +16,11 @@ class CategoryRPY{
 
             //para datatable
         }else{
+            $filter=$request->filter;
             //Traer data por ordern de nombre
-            $result=Category::orderBY('name', 'ASC')->paginate(2);
+            $result=Category::orderBY('name', 'ASC')
+            ->where('name','LIKE',"%$filter%")
+            ->paginate(10)->appends('filter',$filter);
             return $result;
         }
 

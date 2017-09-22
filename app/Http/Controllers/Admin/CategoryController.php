@@ -41,7 +41,8 @@ class CategoryController extends Controller
         //return viewe('catalogos.categories.index',compact('table'));
         //2 forma de visualizar la vista que se creo
         return view('catalogos.categories.index')->with([
-            'table'=>$table
+            //'table'=>$table
+            'table'=>$table,'filter'=>$request->filter
         ]);
     }
 
@@ -66,12 +67,14 @@ class CategoryController extends Controller
     {
         //Guardar data y validacion de los campos name y description
         $this->validate($request,
-        ['name'=>'required','description'=>'required'],
+        //Añado "required|unique:categories,name" para que no me deje insertar un nombre repetido
+        ['name'=>'required|unique:categories,name','description'=>'required'],
         ['name.required'=>'El nombre es obligatorio',
         'description.required'=>'La descripcion es obligatorio']);
 
         //Inicio el guardado de objecto
         $this->objCategoryRPY->forSave($request);
+        return redirect()->route('catalogos.categories.index');
     }
 
     /**
@@ -83,6 +86,7 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         //
+        return view('catalogos.categories.show',compact('category'));
     }
 
     /**
@@ -94,6 +98,7 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         //
+        return view('catalogos.categories.edit',compact('category'));
     }
 
     /**
@@ -113,6 +118,7 @@ class CategoryController extends Controller
 
         //Inicio del update
         $this->objCategoryRPY->forUpdate($request,$category);
+        return redirect()->route('catalogos.categories.index');
     }
 
     /**

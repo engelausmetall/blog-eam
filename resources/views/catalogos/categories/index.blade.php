@@ -5,13 +5,24 @@
                 <div class="panel-heading">
                     Listado de Categorias
                 </div>
-                <div class="panel-body">
+                <center><div class="panel-body">
                     <div class="col-lg-4 col-lg-offset-4 text-center">
                         <a class="btn btn-primary btn-block"
                             href="{{route('catalogos.categories.create')}}">
-                            <i class="glyphicon glyphicon-plus"></i>
-                            Agregar</a>
+                            <i class="fa fa-plus"></i>
+                            Agregar Registro</a>
                     </div>
+									                    
+                    {!! Form::open(['route'=>'catalogos.categories.index','method'=>'GET']) !!}
+                        <div class="input-group">
+                        <input type="text" name="filter" class="form-control"
+                        placeholder="Buscar" value="{{$filter}}"> </input>
+                        <span class="input-group-btn">
+                            <button class="btn btn-danger" type="submmit">Buscar Registro</button>
+                            </span>
+					{!! Form::close() !!}
+					 </div>
+					</center>
                 <table class="table">
                     <thead>
                         <th>Nombres</th>
@@ -22,8 +33,9 @@
                         @forelse($table as $item)
                             <tr>
                                 <td>{{$item->name}}</td>
-                                <td>{{$item->descripticion}}</td>
-                                <td></td>
+                                <td>{{$item->description}}</td>
+								<td><a class="btn btn-primary btn-xs" href="{{route('catalogos.categories.edit',$item->id)}}">Editar</a>
+                                <a class="btn btn-success btn-xs" href="{{route('catalogos.categories.show',$item->id)}}">Ver</a>
                             </tr>
                         @empty
                             <tr><td colspan="3">Sin Registros</td></tr>
