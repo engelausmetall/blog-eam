@@ -6,8 +6,13 @@
                     Listado de Categorias
                 </div>
                 <div class="panel-body">
-
-                <table>
+                    <div class="col-lg-4 col-lg-offset-4 text-center">
+                        <a class="btn btn-primary btn-block"
+                            href="{{route('catalogos.categories.create')}}">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            Agregar</a>
+                    </div>
+                <table class="table">
                     <thead>
                         <th>Nombres</th>
                         <th>Descripcion</th>
