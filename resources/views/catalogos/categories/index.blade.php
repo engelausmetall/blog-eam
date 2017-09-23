@@ -39,6 +39,10 @@
                                 <i class="fa fa-pencil-square-o"></i>Editar</a>
                                 <a class="btn btn-success btn-xs" href="{{route('catalogos.categories.show',$item->id)}}">
                                 <i class="fa fa-hand-pointer-o"></i>Ver</a>
+
+                                <a href="#" action="delete" class="btn btn-danger btn-xs"
+                                    url="{{route('catalogos.categories.destroy',$item->id)}}">
+                                    <i class="fa fa-trash"></i>Eliminar</a>
                             </tr>
                         @empty
                             <tr><td colspan="3">Sin Registros</td></tr>
@@ -49,4 +53,33 @@
                 </div>
             </div>
         </div>
+        {!! Form::open(['method'=>'DELETE','id'=>'frmDelete']) !!}
+
+        {!! Form::close() !!}
+@endsection
+@php /* aqui declaro mis JS hijo y capturamos el elemento */ @endphp
+@section('masterJS')
+    <script>
+        $("a[action=delete]").on('click',function(){
+            //alert($(this).attr('url'));
+            var _url=$(this).attr('url');
+            swal({
+                title: "",
+                text: "Est\u00E1s seguro que deseas eliminar el registro",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+
+                confirmButtonText: "SI",
+                cancelButtonText: "NO",
+                closeOnConfirm: true,
+                closeOnCancel: true
+                },
+            function (isConfirm) {
+                if (isConfirm) {
+                    $("#frmDelete").attr('action',_url);
+                    $("#frmDelete").submit();
+            }
+            });
+        });
+    </script>
 @endsection

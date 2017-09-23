@@ -12,14 +12,22 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/blog.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugins/notificaciones/pnotify.custom.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugins/notificaciones/sweetalert.css') }}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
+    @php /* Para usar despues
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/buttons.bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/noto.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    */@endphp
 </head>
 <body>
+<div id="pageLoader">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+</div>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
@@ -52,6 +60,8 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
+                            @php /* agrego la seccion de categoria en el menu */@endphp
+                            <li><a href="{{ route('catalogos.categories.index') }}">Categorias</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -76,12 +86,20 @@
                 </div>
             </div>
         </nav>
-
+        @php /* Aqui añado mi render messages, uso offset para centrar */ @endphp
+        <div class="col-lg-8 col-lg-offset-2 text-center">
+        {!! Messages::render() !!}
+        </div>
         @yield('content')
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/utils.js') }}"></script>
+    <script src="{{ asset('plugins/notificaciones/pnotify.min.js') }}"></script>
+    <script src="{{ asset('plugins/notificaciones/sweet_alert.min.js') }}"></script>
+    @php /* comentado, para despues
+    <script src="{{ asset('js/utils.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/buttons.bootstrap.min.js') }}"></script>
@@ -93,5 +111,14 @@
     <script src="{{ asset('js/jszip.min.js') }}"></script>
     <script src="{{ asset('js/pdfmake.min.js') }}"></script>
     <script src="{{ asset('js/vfs_fonts.js') }}"></script>
+*/ @endphp
+    <script>
+        $('.alert').not('.important').delay(7000).slideUp(350);
+        console.log("%c¡Detente!", "font-family: ';Arial';, serif; font-weight: bold; color: red; font-size: 45px");
+        console.log("%cEsta función del navegador está pensada para desarrolladores. Si alguien te indicó que copiaras y pegaras algo aquí para habilitar una función del sitio o para PIRATEAR la cuenta de alguien, se trata de un fraude.", "font-family: ';Arial';, serif; color: black; font-size: 20px");
+        console.log("%cSi lo haces, esta persona podrá acceder a tu cuenta y datos personales.", "font-family: ';Arial';, serif; color: black; font-size: 20px");
+    </script>
+    @php /* aqui invoco los JS hijos*/@endphp
+    @yield('masterJS')
 </body>
 </html>
