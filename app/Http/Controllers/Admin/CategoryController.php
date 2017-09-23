@@ -8,7 +8,7 @@ use App\Core\Entities\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Core\Repositories\CategoryRPY;
-Use Messages;
+use Messages;
 
 class CategoryController extends Controller
 {
