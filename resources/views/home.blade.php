@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4 text-center">
-            <img src="img/book.jpg" style="width: 150px">
+            <img src="img/book.png" style="width: 150px">
             <button class="btn btn-primary btn-block">
                 <i class="fa fa-book"></i>Publicar</button>
                 <hr/>
