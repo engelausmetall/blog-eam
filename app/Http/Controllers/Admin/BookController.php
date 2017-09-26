@@ -47,7 +47,7 @@ class BookController extends Controller
         $objBook->fill($request->all());
         $objBook->user_id=Auth::user()->id;
         //Storage::disk('public')->put();
-        $request->file('picture')->storage('public');
+        $request->file('picture')->store('public');
         $category->books()->save($objBook);
         //return response()->json($request->all(),200);
         return response()->json('Guardado Correctamente',200);
