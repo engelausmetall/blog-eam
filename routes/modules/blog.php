@@ -9,6 +9,7 @@ Route::group(['prefix' => 'catalogos', 'as'=>'catalogos.' ], function (){
             //El resource se encarga enlacar mi controller
             //En el url seria blog.dev/catalogos/categories/create
             Route::resource('categories','CategoryController');
+            Route::get('categories-select','CategoryController@listSelect');
             Route::resource('books','BookController');
         });
     });

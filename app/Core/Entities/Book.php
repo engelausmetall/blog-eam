@@ -21,4 +21,9 @@ class Book extends Model
     public function category(){
         return $this->belongsTo(Category::class,'category_id');
     }
+
+    public function setPictureAttribute($value)
+    {
+        $this->attributes['picture'] = 'img-'.uniqid().uniqid().'.jpg';
+    }
 }
