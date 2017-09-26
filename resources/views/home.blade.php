@@ -46,8 +46,7 @@
 
         <script>
             $("#btnPost").on('click',function(){
-                    riot.mount('create-book',{id:0,title:'Crear Libro',
-                        token:$("input[name='_token']").val()
+                    riot.mount('create-book',{id:0,title:'Crear Libro',token:$("input[name='_token']").val()
             });
         });
         </script>

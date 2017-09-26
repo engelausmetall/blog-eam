@@ -35,6 +35,7 @@
                 <input id="picture" class="form-control" type='file'/>
             </div>
             <!-- Fin del Menu de Combo -->
+            </div>
       </div>
       <!-- Un guardar tradicional onclick="guardar" -->
       <div class="modal-footer">
@@ -89,29 +90,25 @@ opts es una palabra reservada, que son variables que vienen desde el padre -->
         success: function(msg){
             alert('ok');
     },
-        error: function(xhr, status) {
+    error: function(xhr, status) {
         if( xhr.status == 422 ) {
-        var errores='';
-        errors = xhr.responseJSON;
-        $.each( errors.errors, function( key, value ) {
-        errores += value[0]+"\n";
-    });
+            var errores='';
+            errors = xhr.responseJSON;
+            $.each( errors.errors, function( key, value ) {
+                errores += value[0]+"\n";
+        });
         if(errores.trim()!=""){
-        alert(errores);
-    }
+                    alert(errores);
+        }
         }else{console.log(xhr);
             if( xhr.status == '404' ) {
-            alert("C\u00F3digo o Pagina no encontrado");
-        }else{
-            alert("Error de procesamiento (cod: "+xhr.status+ ")\n"+xhr.responseText);
+                alert("C\u00F3digo o Pagina no encontrado");
+            }else{
+                alert("Error de procesamiento (cod: "+xhr.status+ ")\n"+xhr.responseText);
             }
-
-            }
-    },
-    });
-        
-    }
-
+          }
+        },
+    });        
+}
 </script>
-
 </create-book>
