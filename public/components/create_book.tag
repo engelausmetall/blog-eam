@@ -2,7 +2,7 @@
 
 <!-- Modal -->
 <!-- la variables en riot son de la siguiente maneta {VARIABLE} -->
-<div class="modal fade" id="dvCreateBook" tabindex="-1" role="dialog" aria-labelledby="dialog">
+<div class="modal fade" id="dvCreateBook" tabindex="-1" role="dialog" aria-labelledby="dialog" aria-labelledby="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -40,7 +40,7 @@
       <!-- Un guardar tradicional onclick="guardar" -->
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" onclick='{guardar}'>Guardar</button>
+        <button type="button" class="btn btn-primary" onclick="{guardar}">Guardar</button>
       </div>
     </div>
   </div>

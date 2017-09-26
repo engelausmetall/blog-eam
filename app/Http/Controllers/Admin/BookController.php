@@ -40,15 +40,15 @@ class BookController extends Controller
     {
         //
         $this->validate($request,['title'=>'required','description'=>'required',
-        'categoria'=>'require', 'picture'=>'require']);
+        'categoria'=>'required', 'picture'=>'required']);
 
-        $category=Category::findOnFail($request->categoria);
+        $category=Category::findOrFail($request->categoria);
         $objBook=new Book();
         $objBook->fill($request->all());
         $objBook->user_id=Auth::user()->id;
         //Storage::disk('public')->put();
         $request->file('picture')->storage('public');
-        $objBook->books()->save($objBook);
+        $category->books()->save($objBook);
         //return response()->json($request->all(),200);
         return response()->json('Guardado Correctamente',200);
     }

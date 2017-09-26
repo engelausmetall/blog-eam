@@ -40,6 +40,7 @@
 </div>
 @php /* invoco el tag (riot) que cree */ @endphp
 <create-book></create-book>
+{!!csrf_field()!!}
 @endsection
 @section('masterJS')
         <script src="{{asset('components/create_book.tag')}}" type="riot/tag"></script>
