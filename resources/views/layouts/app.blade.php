@@ -98,6 +98,8 @@
     <script src="{{ asset('js/utils.js') }}"></script>
     <script src="{{ asset('plugins/notificaciones/pnotify.min.js') }}"></script>
     <script src="{{ asset('plugins/notificaciones/sweet_alert.min.js') }}"></script>
+    <script src="{{ asset('plugins/riot/riot.min.js') }}"></script>
+    <script src="{{ asset('plugins/riot/riot-compiler.min.js') }}"></script>
     @php /* comentado, para despues
     <script src="{{ asset('js/utils.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
