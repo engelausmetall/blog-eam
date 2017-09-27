@@ -10,7 +10,22 @@ Route::group(['prefix' => 'catalogos', 'as'=>'catalogos.' ], function (){
             //En el url seria blog.dev/catalogos/categories/create
             Route::resource('categories','CategoryController');
             Route::get('categories-select','CategoryController@listSelect');
-            Route::resource('books','BookController');
+            //Route::resource('books','BookController');
+            Route::post('books','BookController@store');
         });
+    });
+});
+
+//Nuevo Grupo de Rutas donde esta la imagen, no necesito
+Route::group(['prefix' => 'blog', 'as'=>'blog.' ], function (){
+    Route::group(['middleware'=>'auth' ],function(){
+            Route::get('image-{file}',function($file){
+                $url = storage_path() . "/app/public/{$file}";
+                if (file_exists($url)) {
+                    return Response::download($url);
+                }
+            })->name('imagenes');
+
+            Route::get('comentarios-{path}','Admin\BookController@show')->name('comentarios');
     });
 });

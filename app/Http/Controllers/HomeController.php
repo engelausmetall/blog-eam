@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Core\Repositories\CategoryRPY;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -28,6 +29,16 @@ class HomeController extends Controller
         //Instancio CategoryRPY con use
         $categoryRPY=new CategoryRPY();
         $categories=$categoryRPY->forAll();
-        return view('home',compact('categories'));
+
+        //Extraer los usuario y coleccion de libros
+        $user=Auth::user();
+        $user->load('books.category');
+        $books=$user->books;
+        //Auth::user()->books
+        //$books=Auth::user()->books();
+                
+        //dd para ver lo de books como un echo
+        //dd($books);
+        return view('home',compact('categories','books'));
     }
 }

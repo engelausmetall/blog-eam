@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-4 text-center">
+        <div class="col-md-3 text-center">
             <img src="img/book.png" style="width: 150px">
             @php /* creo un id al boton publica*/ @endphp
             <button id="btnPost" class="btn btn-primary btn-block">
@@ -21,7 +21,7 @@
                         <a href="#" class="list-group-item">Ciencia Ficcion</a> */ @endphp
                     </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-9">
             <div class="panel panel-primary">
                 <div class="panel-heading">Mis Libros</div>
 
@@ -32,7 +32,28 @@
                         </div>
                     @endif
 
-                    Esta En Linea!!!
+                    @php /* Añado para el menu de libros */@endphp
+                    <div class="row">
+                        @php /* Creo lo siguiente para invocar en HomeController */ @endphp
+                        @foreach($books as $book)
+                        <div class="col-sm-4">
+                            <div class="thumbnail">
+                            <img style="width:192px;" src="{{route('blog.imagenes',$book->picture)}}" alt="Imagen No Encontrada">
+                            <div class="caption">
+                            <h3>{{$book->title}}</h3>
+                            <p>{{$book->category->name}}</p>
+                            <p>{{$book->description}}</p>
+                                <p><a href="{{route('blog.comentarios',$book->slug)}}" class="btn btn-primary" role="button">Comentar</a>
+                                @php /* Uso la libreria carbon diifForHuman */@endphp
+                                <i class="fa fa-clock-o fa-spin"></i>{{$book->created_at->diffForHumans()}}</p>
+                            </div>
+                            </div>
+                        </div>
+                        @endforeach
+                        </div>
+
+                    @php /* Esta En Linea!!! */ @endphp
+                    
                 </div>
             </div>
         </div>

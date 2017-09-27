@@ -2,99 +2,54 @@
 
 namespace App\Http\Controllers\Admin;
 
+//Añadimos la clases
+use App\Http\Requests\BookRequest;
 use App\Core\Entities\Category;
 use App\Core\Entities\Book;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
+use Storage;
+use File;
 
 class BookController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+ 
+    //Otra manera de hacer la funcion pero con Request, la otra generamos un request como BookRequest
+    //public function store(Request $request)
+    public function store(BookRequest $request)
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-        $this->validate($request,['title'=>'required','description'=>'required',
-        'categoria'=>'required', 'picture'=>'required']);
+        //Otra forma mas segura pero llamamos de la clases request App/Http/Request
+        //Otra forma mas segura
+        //$request->validate(['title'=>'required','description'=>'required','categoria'=>'required', 'picture'=>'required'];)
+        //Otra forma pero insegura
+        //$this->validate($request,['title'=>'required','description'=>'required','categoria'=>'required', 'picture'=>'required']);
 
         $category=Category::findOrFail($request->categoria);
         $objBook=new Book();
-        $objBook->fill($request->all());
+        //$objBook->fill($request->all());
+        $objBook->fill($request->validated());
         $objBook->user_id=Auth::user()->id;
+        //$objBook->user_id=auth()->id;
+        //metodos de Guardado
         //Storage::disk('public')->put();
-        $request->file('picture')->store('public');
+        //Storage::disk('public')->pubfile($objBook->picture, $request->file('picture'));
+        //$request->file('picture')->store('public');
+        //Guardo la imagen en "\storage\app\public"
+        Storage::disk('public')->put($objBook->picture, File::get($request->picture));
         $category->books()->save($objBook);
         //return response()->json($request->all(),200);
         return response()->json('Guardado Correctamente',200);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Core\Entities\Book  $book
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Book $book)
+
+    public function show($path)
     {
         //
+        $objBook = Book::findBySlugOrFail($path);
+        //dd($objBook);
+        return view('blog.book_details',compact('objBook'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Core\Entities\Book  $book
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Book $book)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Core\Entities\Book  $book
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Book $book)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Core\Entities\Book  $book
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Book $book)
-    {
-        //
-    }
 }

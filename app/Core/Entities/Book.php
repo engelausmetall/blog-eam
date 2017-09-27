@@ -5,12 +5,22 @@ namespace App\Core\Entities;
 use Illuminate\Database\Eloquent\Model;
 //Activar borrados logico
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 
 class Book extends Model
 {
     //
     //Realizar borrados logicos
-    use SoftDeletes;
+    use SoftDeletes, Sluggable,SluggableScopeHelpers;
+    public function sluggable(){
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
+
     protected $table='books';
     //En el caso que trabajamos con mas de una base de datos, aplicar lo siguiente
     //protected $connection='mysql';

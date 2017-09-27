@@ -26,4 +26,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    //Declaro la funcion para que me lleve al entities books
+    public function books(){
+        return $this->hasMany(\App\Core\Entities\Book::class,'user_id');
+    }
 }
