@@ -3,7 +3,8 @@
 //Agrego rutas de grupos para catalogos
 
 Route::group(['prefix' => 'catalogos', 'as'=>'catalogos.' ], function (){
-    Route::group(['middleware'=>'auth' ],function(){
+    //Comento middleware no es necesario por ahora
+    //Route::group(['middleware'=>'auth' ],function(){
         //Defino un namespace para definir una ruta
         Route::namespace('Admin')->group(function () {
             //El resource se encarga enlacar mi controller
@@ -13,12 +14,12 @@ Route::group(['prefix' => 'catalogos', 'as'=>'catalogos.' ], function (){
             //Route::resource('books','BookController');
             Route::post('books','BookController@store');
         });
-    });
+    //});
 });
 
 //Nuevo Grupo de Rutas donde esta la imagen, no necesito
 Route::group(['prefix' => 'blog', 'as'=>'blog.' ], function (){
-    Route::group(['middleware'=>'auth' ],function(){
+    ///Route::group(['middleware'=>'auth' ],function(){
             Route::get('image-{file}',function($file){
                 $url = storage_path() . "/app/public/{$file}";
                 if (file_exists($url)) {
@@ -28,4 +29,12 @@ Route::group(['prefix' => 'blog', 'as'=>'blog.' ], function (){
 
             Route::get('comentarios-{path}','Admin\BookController@show')->name('comentarios');
     });
+//});
+
+Route::get('mail',function(){
+    /*Sin rederizacion*/
+    //Mail::send(new \App\Mail\BookMail($order));
+    //Mail::send(new \App\Mail\BookMail('uno','dos','tres'));
+    //Con rederizacion de e-mail
+    return new App\Mail\BookMail('uno','dos','tres');
 });

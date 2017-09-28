@@ -91,7 +91,7 @@ opts es una palabra reservada, que son variables que vienen desde el padre -->
             /*alert('ok');*/
             alertToastSuccess('Libro Publicado Correctamente',3000);
             /* Invocamos nuestra modal y eliminamos para que desaparesca al guardar*/
-            $("#dvdCreateBook .close").click();
+            $("#dvCreateBook .close").click();
     },
     error: function(xhr, status) {
         if( xhr.status == 422 ) {

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Core\Entities;
-
+use App\Events\BookEvent;
 use Illuminate\Database\Eloquent\Model;
 //Activar borrados logico
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -21,6 +21,10 @@ class Book extends Model
         ];
     }
 
+    protected $dispatchesEvents=[
+        'creating' => BookEvent::class,
+    ];
+
     protected $table='books';
     //En el caso que trabajamos con mas de una base de datos, aplicar lo siguiente
     //protected $connection='mysql';
@@ -30,6 +34,10 @@ class Book extends Model
     //Para que los queries se realicen en cascada de hijo a padre (Menos a Muchos)
     public function category(){
         return $this->belongsTo(Category::class,'category_id');
+    }
+    
+    public function user(){
+        return $this->belongsTo(\App\User::class,'user_id');
     }
 
     public function setPictureAttribute($value)

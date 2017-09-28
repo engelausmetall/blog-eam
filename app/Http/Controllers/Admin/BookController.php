@@ -29,7 +29,7 @@ class BookController extends Controller
         $objBook=new Book();
         //$objBook->fill($request->all());
         $objBook->fill($request->validated());
-        $objBook->user_id=Auth::user()->id;
+        /*$objBook->user_id=Auth::user()->id;*/ //Este comento
         //$objBook->user_id=auth()->id;
         //metodos de Guardado
         //Storage::disk('public')->put();
