@@ -147,4 +147,9 @@ class CategoryController extends Controller
             abort(401);
         }
     }
+
+    //Para datatables
+    public function dataTables(){
+        return datatables()->of(Category::all())->make(true);
+    }
 }

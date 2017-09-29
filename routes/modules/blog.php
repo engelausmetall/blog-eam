@@ -31,6 +31,7 @@ Route::group(['prefix' => 'blog', 'as'=>'blog.' ], function (){
     });
 //});
 
+//Ruta para probar el envio de email // Solo de prueba
 Route::get('mail',function(){
     /*Sin rederizacion*/
     //Mail::send(new \App\Mail\BookMail($order));
@@ -38,3 +39,7 @@ Route::get('mail',function(){
     //Con rederizacion de e-mail
     return new App\Mail\BookMail('uno','dos','tres');
 });
+
+//Rutas para red Social
+Route::get('auth/{provider}', 'Auth\SocialAuthController@redirectToProvider')->name('social.auth');
+Route::get('auth/{provider}/callback', 'Auth\SocialAuthController@handleProviderCallback');

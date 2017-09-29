@@ -24,3 +24,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 require __DIR__ . '/modules/eloquents.php';
 require __DIR__ . '/modules/basics.php';
 require __DIR__ . '/modules/blog.php';
+
+//Ruta para ver los logs
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');

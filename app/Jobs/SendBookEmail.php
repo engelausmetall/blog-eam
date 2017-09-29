@@ -10,6 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use App\Core\Entities\Book;
 use App\Mail\BookMail;
+use Illuminate\Contracts\Mail\Mailer;
 
 class SendBookEmail implements ShouldQueue
 {
@@ -36,8 +37,10 @@ class SendBookEmail implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    //public function handle()
+    public function handle(Mailer $mailer)
     {
         //
+        $mailer->send($this->objBookMail);
     }
 }

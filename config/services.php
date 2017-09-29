@@ -35,4 +35,11 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    /* Agrego lo siguiente para login en google*/
+    'google' => [
+        'client_id' => '506309302052-hs00had9u23rrnb1l9eicvcicqagor7t.apps.googleusercontent.com',
+        'client_secret' => 'cGyRMHVtcSZvkExHiFdSBRMf',
+        'redirect' => 'http://blog.dev/auth/google/callback'
+    ],
+
 ];

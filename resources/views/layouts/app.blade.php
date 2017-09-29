@@ -10,19 +10,12 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Styles -->
+    <!-- CSS Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/blog.css') }}" rel="stylesheet">
     <link href="{{ asset('plugins/notificaciones/pnotify.custom.min.css') }}" rel="stylesheet">
     <link href="{{ asset('plugins/notificaciones/sweetalert.css') }}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
-    @php /* Para usar despues
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/buttons.bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/noto.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    */@endphp
 </head>
 <body>
 <div id="pageLoader">
@@ -41,10 +34,14 @@
                         <span class="icon-bar"></span>
                     </button>
 
-                    <!-- Branding Image -->
+                    <!-- Branding Image // Cambio el Nombre de Laravel -->
+                    @guest
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{ config('app.name', 'BlogAPP') }}
                     </a>
+                    @else
+                        <img src="{{Auth::user()->avatar }}" style="width:75px; height:95px;"/>
+                    @endguest
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -93,27 +90,14 @@
         @yield('content')
     </div>
 
-    <!-- Scripts -->
+    <!-- Inovcacion de JavaScripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/utils.js') }}"></script>
     <script src="{{ asset('plugins/notificaciones/pnotify.min.js') }}"></script>
     <script src="{{ asset('plugins/notificaciones/sweet_alert.min.js') }}"></script>
     <script src="{{ asset('plugins/riot/riot.min.js') }}"></script>
     <script src="{{ asset('plugins/riot/riot-compiler.min.js') }}"></script>
-    @php /* comentado, para despues
-    <script src="{{ asset('js/utils.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/buttons.bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('js/dataTables.bootstrap.js') }}"></script>
-    <script src="{{ asset('js/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('js/jquery-1.12.3.js') }}"></script>
-    <script src="{{ asset('js/jszip.min.js') }}"></script>
-    <script src="{{ asset('js/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('js/vfs_fonts.js') }}"></script>
-*/ @endphp
+    <!-- Script de advertencia en la consola -->
     <script>
         $('.alert').not('.important').delay(7000).slideUp(350);
         console.log("%c¡Detente!", "font-family: ';Arial';, serif; font-weight: bold; color: red; font-size: 45px");
@@ -122,5 +106,20 @@
     </script>
     @php /* aqui invoco los JS hijos*/@endphp
     @yield('masterJS')
+
+        <!--Start of Tawk.to Script-->
+        <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/59cd922ac28eca75e462300e/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+        </script>
+        <!--End of Tawk.to Script-->
+
 </body>
 </html>

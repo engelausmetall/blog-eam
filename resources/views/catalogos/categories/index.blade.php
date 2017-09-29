@@ -1,18 +1,18 @@
 @extends('layouts.app')
 @section('content')
-        <div class="col-lg-12 col-lg-offset-0">
+        <div class="col-lg-8 col-lg-offset-2">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     Listado de Categorias
                 </div>
-                <center><div class="panel-body">
+                <div class="panel-body">
                     <div class="col-lg-4 col-lg-offset-0 text-center">
                         <a class="btn btn-primary btn-block"
                             href="{{route('catalogos.categories.create')}}">
                             <i class="fa fa-plus"></i>
                             Crear Registro</a>
                     </div>
-									                    
+					<div class="col-lg-8">				                    
                     {!! Form::open(['route'=>'catalogos.categories.index','method'=>'GET']) !!}
                         <div class="input-group">
                         <input type="text" name="filter" class="form-control"
@@ -21,9 +21,9 @@
                             <button class="btn btn-danger" type="submmit">
                             <i class="fa fa-search" aria-hidden="true"></i> Buscar</button>
                             </span>
-					{!! Form::close() !!}
+                            </div> <!-- /input-group -->
+					{!! Form::close() !!}                    
 					 </div>
-					</center>
                 <table class="table">
                     <thead>
                         <th>Nombres</th>
@@ -56,9 +56,21 @@
         {!! Form::open(['method'=>'DELETE','id'=>'frmDelete']) !!}
 
         {!! Form::close() !!}
+            @php /* Declaro aqui para los campos para el datatables */@endphp
+            <div class="row">
+            <table class="table" id="tableCategories">
+                            <thead>
+                                <th>Nombres</th>
+                                <th>Descripcion</th>
+                                <th>Acciones</th>
+                            </thead>
+            </table>
+        </div>
 @endsection
 @php /* aqui declaro mis JS hijo y capturamos el elemento */ @endphp
 @section('masterJS')
+@php /* aqui invoco los JS del datatables por demanda en esta seccion */ @endphp
+{!!Html::script('plugins/datatables/jquery.dataTables.min.js')!!}
     <script>
         $("a[action=delete]").on('click',function(){
             //alert($(this).attr('url'));
@@ -81,5 +93,28 @@
             }
             });
         });
+/* Aqui declaro lo del DataTables */
+$(function(){
+            $.fn.dataTable.ext.errMode = 'throw';
+                $('#tableCategories').DataTable({
+                    responsive: true,
+                    "aoColumnDefs": [],
+                    "processing": true,
+                    "serverSide": true,
+                    "deferRender": true,
+                    "destroy": true,
+                    "ajax": '/catalogos/categories-tables',
+                    "columns": [
+                        {data: 'name'},
+                        {data: 'description'},
+                        {data: 'description'}
+                    ],
+                    "order": []
+                }).ajax.reload();
+        });
+/* Fin del Datatables */
     </script>
+@endsection
+
+@section('masterCSS')
 @endsection

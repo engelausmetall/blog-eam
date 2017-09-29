@@ -50,13 +50,17 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
+                            <div class="col-md-4">
+                                <a class="btn btn-danger" href="{{route('social.auth','google')}}">
+                                    <i class="fa fa-google"></i>&nbsp;GOOGLE</a>
+                            </div>
+                            <div class="col-md-8">
                                 <button type="submit" class="btn btn-primary">
                                     Login
                                 </button>
 
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
+                                    Olvidaste tu contraseña?
                                 </a>
                             </div>
                         </div>
