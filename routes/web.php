@@ -21,8 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //Aqui tengo la rutas que cree, la carpeta se creo modules al igual que el archivo basics.php
 //Van doble guion bajo
-require __DIR__ . '/modules/eloquents.php';
 require __DIR__ . '/modules/basics.php';
+require __DIR__ . '/modules/eloquents.php';
 require __DIR__ . '/modules/blog.php';
 
 //Ruta para ver los logs

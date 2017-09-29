@@ -15,6 +15,9 @@ class BookEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    //Declaro un public de objBook
+    public $objBook;
+
     /**
      * Create a new event instance.
      *

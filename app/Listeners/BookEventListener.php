@@ -32,7 +32,8 @@ class BookEventListener
         //Añado variable
         $objBook=$event->objBook;
         //dd($event->objBook);
-        $event->objBook->user_id=Auth::user()->id;
+        //$event->objBook->user_id=Auth::user()->id;
+        $objBook->user_id=Auth::user()->id;
         $bookEmail=new BookMail($objBook->user->name,route('blog.comentarios',$objBook->slug),$objBook->title);
         //SendBookEmail::dispath($podcast);
         SendBookEmail::dispatch($bookEmail);

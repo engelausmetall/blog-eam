@@ -22,8 +22,9 @@ class SendBookEmail implements ShouldQueue
      * @return void
      */
 
-    //Añado un publci
-    public $objBook;
+    //Añado un public
+    //public $objBook;
+    public $objBookMail;
     
     //public function __construct()
     public function __construct(BookMail $objBookMail)

@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3 text-center">
-            <img src="img/book.png" style="width: 150px">
+            <img src="img/book.png" style="width: 150px; height: 120px;">
             @php /* creo un id al boton publica*/ @endphp
             <button id="btnPost" class="btn btn-primary btn-block">
                 <i class="fa fa-book"></i>Publicar</button>
@@ -36,7 +36,7 @@
                     <div class="row">
                         @php /* Creo lo siguiente para invocar en HomeController */ @endphp
                         @foreach($books as $book)
-                        <div class="col-sm-4">
+                        <div class="col-lg-4">
                             <div class="thumbnail">
                             <img style="width:192px;" src="{{route('blog.imagenes',$book->picture)}}" alt="Imagen No Encontrada">
                             <div class="caption">

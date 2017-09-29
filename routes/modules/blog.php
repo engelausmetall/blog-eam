@@ -12,6 +12,8 @@ Route::group(['prefix' => 'catalogos', 'as'=>'catalogos.' ], function (){
             Route::resource('categories','CategoryController');
             Route::get('categories-select','CategoryController@listSelect');
             //Route::resource('books','BookController');
+            //Ruta "categories-table" para Datatables
+            Route::get('categories-tables','CategoryController@dataTables');
             Route::post('books','BookController@store');
         });
     //});

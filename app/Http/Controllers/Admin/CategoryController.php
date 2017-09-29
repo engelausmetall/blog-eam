@@ -148,7 +148,7 @@ class CategoryController extends Controller
         }
     }
 
-    //Para datatables
+    //Para datatables el query
     public function dataTables(){
         return datatables()->of(Category::all())->make(true);
     }

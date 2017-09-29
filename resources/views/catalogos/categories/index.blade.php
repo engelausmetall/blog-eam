@@ -6,7 +6,7 @@
                     Listado de Categorias
                 </div>
                 <div class="panel-body">
-                    <div class="col-lg-4 col-lg-offset-0 text-center">
+                    <div class="col-lg-4 text-center">
                         <a class="btn btn-primary btn-block"
                             href="{{route('catalogos.categories.create')}}">
                             <i class="fa fa-plus"></i>
@@ -43,6 +43,7 @@
                                 <a href="#" action="delete" class="btn btn-danger btn-xs"
                                     url="{{route('catalogos.categories.destroy',$item->id)}}">
                                     <i class="fa fa-trash"></i>Eliminar</a>
+                                    </td>
                             </tr>
                         @empty
                             <tr><td colspan="3">Sin Registros</td></tr>
